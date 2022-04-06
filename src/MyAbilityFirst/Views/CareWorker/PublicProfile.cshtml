@@ -1,0 +1,13 @@
+﻿@model MyAbilityFirst.Models.CareWorkerPublicProfileViewModel
+
+<div class="col-md-3">
+	@Html.Action("_MyAccountSidebar", "MyAccount")
+</div>
+
+<div class="col-md-9">
+	@Html.Action("ShortlistButton", "Client", new { careWorkerID = Model.CareWorkerID })
+</div>
+
+@section Scripts {
+	<script src="~/Scripts/Shared/site.js" type="text/javascript"></script>
+}

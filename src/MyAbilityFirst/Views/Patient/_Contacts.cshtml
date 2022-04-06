@@ -1,0 +1,52 @@
+﻿@model MyAbilityFirst.Models.PatientDetailsViewModel
+
+    @for (int contactIndex = 0; contactIndex < Model.Contacts.Count(); contactIndex++) {
+        <div class="form-group">
+            @Html.Label("Contact: " + Model.Contacts[contactIndex].ContactName?? "New Contact", htmlAttributes: new { @class = "control-label col-md-2" }) 
+        </div>
+        <br/>
+        <div class="form-group col-md-offset-2">
+            @Html.HiddenFor(model => model.Contacts[contactIndex].ID)
+            @Html.HiddenFor(model => model.Contacts[contactIndex].PatientID)
+            <div class="form-group">
+                @Html.LabelFor(model => model.Contacts[contactIndex].ContactName, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.EditorFor(model => model.Contacts[contactIndex].ContactName, new { htmlAttributes = new { @class = "control-label col-md-4" } })
+                @Html.ValidationMessageFor(model => model.Contacts[contactIndex].ContactName, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.Contacts[contactIndex].ContactName)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Contacts[contactIndex].MobilePhone, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.EditorFor(model => model.Contacts[contactIndex].MobilePhone, new { htmlAttributes = new { @class = "control-label col-md-4" } })
+                @Html.ValidationMessageFor(model => model.Contacts[contactIndex].MobilePhone, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.Contacts[contactIndex].MobilePhone)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Contacts[contactIndex].WorkPhone, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.EditorFor(model => model.Contacts[contactIndex].WorkPhone, new { htmlAttributes = new { @class = "control-label col-md-4" } })
+                @Html.ValidationMessageFor(model => model.Contacts[contactIndex].WorkPhone, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.Contacts[contactIndex].WorkPhone)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Contacts[contactIndex].HomePhone, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.EditorFor(model => model.Contacts[contactIndex].HomePhone, new { htmlAttributes = new { @class = "control-label col-md-4" } })
+                @Html.ValidationMessageFor(model => model.Contacts[contactIndex].HomePhone, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.Contacts[contactIndex].HomePhone)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Contacts[contactIndex].Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.EditorFor(model => model.Contacts[contactIndex].Email, new { htmlAttributes = new { @class = "control-label col-md-4" } })
+                @Html.ValidationMessageFor(model => model.Contacts[contactIndex].Email, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.Contacts[contactIndex].Email)
+            </div>
+            <div class="form-group">
+                @Html.Label("Relationship", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.DropDownListFor(m => m.Contacts[contactIndex].RelationshipID,
+                        new SelectList(Model.RelationshipDropDownList.Items,"ID", "Name", 
+                        Model.Contacts[contactIndex].RelationshipID))
+                @Html.ValidationMessageFor(model => model.Contacts[contactIndex].RelationshipID, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.Contacts[contactIndex].RelationshipID)
+            </div>
+        </div>
+    }
+
+

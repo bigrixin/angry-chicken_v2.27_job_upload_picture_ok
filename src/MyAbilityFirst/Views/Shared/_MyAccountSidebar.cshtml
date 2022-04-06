@@ -1,0 +1,61 @@
+﻿@model MyAbilityFirst.Models.MyAccountViewModel
+
+<h1 class="page-header">
+	My Account
+</h1>
+
+<div class="bottom-buffer-10">
+	@if (!Model.EmailVerified)
+	{
+	<div class="alert alert-warning">
+		Your email has not been verified. @Html.ActionLink("Click here", "ResendConfirmEmail", "Account") to re-send your confirmation email.
+	</div>
+	}
+
+	<h4>
+		User: <span class="label label-success">@Model.UserName</span>
+		@if (Model.EmailVerified)
+		{
+		<span class="label label-info">verified</span>
+		}
+	</h4>
+</div>
+
+
+<div>
+    <ul class="list-unstyled">
+        <li class="bottom-buffer-20">
+            <h4><span class="fa fa-key"></span> Profile Management</h4>
+            <ul class="list-unstyled">
+                <li>@Html.ActionLink("Profile", "MyAccount", "Client", routeValues: null, htmlAttributes: new { title = "MyProfile" })</li>
+                <li>@Html.ActionLink("Change Password", "changepassword", "Manage", routeValues: null, htmlAttributes: new { title = "Change Password" })</li>
+            </ul>
+        </li>
+        <li class="bottom-buffer-20">
+            <h4><span aria-hidden="true" class="fa fa-users"></span> Patient Management</h4>
+            <ul class="list-unstyled">
+                <li>@Html.ActionLink("Add a patient", "NewProfile", "Patient", routeValues: null, htmlAttributes: new { title = "Add Patient" })</li>
+                <li>Update a patient</li>
+                <ul>
+                    @foreach (var item in Model.PatientList)
+                    {
+                            <li>@Html.ActionLink(item.FirstName + " " + item.LastName, "MyAccount", "Patient", new { item.ID }, htmlAttributes: new { title = "MyAccount" })</li>
+                    }
+                </ul>
+            </ul>
+
+		</li>
+		<li class="bottom-buffer-20">
+			<h4><span aria-hidden="true" class="fa fa-heart-o"></span> Job postings</h4>
+			<ul class="list-unstyled">
+				<li>@Html.ActionLink("Post a new job", "create", "Job", routeValues: null, htmlAttributes: new { title = "Post a Job" })</li>
+				<li>@Html.ActionLink("All jobs / Update a job", "index", "Job", routeValues: null, htmlAttributes: new { title = "Update a Job" })</li>
+			</ul>
+		</li>
+		<li class="bottom-buffer-20">
+			<h4>
+				<span aria-hidden="true" class="fa fa-search"></span> <a href="" title="Search">Search</a>
+			</h4>
+		</li>
+	</ul>
+</div>
